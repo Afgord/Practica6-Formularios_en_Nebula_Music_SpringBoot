@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nébula Music - Iniciar Sesión</title>
+    <link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+
+    <main class="auth-container">
+        <section class="auth-card">
+            <!-- Creamos el formulario con metodo de envio POST, la action como autentication y application... para un JSON -->
+            <form method="post" action="/autentication" enctype="application/x-www-form-urlencoded">
+                <h1 >INICIO DE SESION</h1>
+                <!-- Creamos un div para encuadrar una sección -->
+                <div>
+                    <label for="email">
+                        Correo electrónico
+                    </label>
+                    <input type="email"
+                           id="email"
+                           name="correo"
+                           placeholder="Ingresa tu correo electrónico"
+                           required
+                           minlength="5"
+                           maxlength="100">
+                </div>
+                <div>
+                    <label for="password">Contraseña
+                        <input type="password"
+                               name="password"
+                               id="password"
+                               placeholder="Ingresa tu contraseña"
+                               required>
+                    </label>
+                </div>
+                <div>
+
+                    <button type="submit">
+                        Iniciar sesión
+                    </button>
+                    <button type="reset">
+                        Limpiar formulario
+                    </button>
+
+                </div>
+            </form>
+
+            <p>¿Aun no tienes cuenta? <a href="/registro">Registrate aquí</a> </p>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>Copyright Nébula 2025.</p>
+    </footer>
+
+</body>
+</html>
