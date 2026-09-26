@@ -2,14 +2,31 @@
    NÉBULA MUSIC - ESTILOS PERSONALIZADOS
    Tema: Metal / Gothic Tech
    Estrategia: Mobile First
+
+   Este archivo toma como base los estilos propuestos en la
+   práctica, pero adaptados a una versión más "Lafa".
+   La idea es respetar lo que pide el ejercicio, pero darle
+   nuestros propios colores y algunos detalles visuales.
    ========================================================== */
+
+
+/* ==========================================================
+   1. IMPORTACIONES
+   ========================================================== */
+
+/* Importamos Quicksand desde Google Fonts para usar la misma
+   tipografía en todo el sitio y mantener una apariencia uniforme. */
 
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
 
 /* ==========================================================
-   1. VARIABLES DE COLOR
+   2. VARIABLES
    ========================================================== */
+
+/* Vamos a declarar algunas variables globales para reutilizar
+   los mismos colores y tamaños después, en lugar de estar
+   escribiendo los códigos hexadecimales una y otra vez. */
 
 :root {
     --bg-color: #090909;
@@ -32,8 +49,13 @@
 
 
 /* ==========================================================
-   2. RESET GENERAL
+   3. RESET GENERAL
    ========================================================== */
+
+/* Quitamos los márgenes y paddings que agrega el navegador
+   por defecto para partir todos desde una base más pareja.
+   También usamos border-box para que los tamaños sean más
+   fáciles de controlar. */
 
 * {
     box-sizing: border-box;
@@ -43,21 +65,25 @@
 
 
 /* ==========================================================
-   3. ESTILOS GENERALES
+   4. ESTILOS GENERALES
    ========================================================== */
 
+/* Aquí colocamos los estilos que van a compartir todas las páginas:
+   fondo oscuro, color de texto y la fuente principal. */
+
 body {
+    min-height: 100vh;
+
     background-color: var(--bg-color);
     color: var(--text-color);
 
     font-family: 'Quicksand', sans-serif;
     line-height: 1.6;
-
-    min-height: 100vh;
 }
 
 
-/* Enlaces generales */
+/* Dejamos los enlaces blancos normalmente y usamos el morado
+   como detalle cuando pasamos el mouse encima. */
 
 a {
     color: var(--text-color);
@@ -70,6 +96,10 @@ a:hover {
     color: var(--accent-light);
 }
 
+
+/* Usamos blanco para los encabezados principales y el morado
+   para los títulos más pequeños. */
+
 h1,
 h2 {
     color: var(--text-color);
@@ -78,6 +108,15 @@ h2 {
 h3 {
     color: var(--accent-light);
 }
+
+
+/* ==========================================================
+   5. NAVEGACIÓN
+   ========================================================== */
+
+/* En la navegación usamos Flexbox para colocar el logo a un lado
+   y el menú al otro. Como estamos trabajando Mobile First,
+   la versión base va a utilizar el menú hamburguesa. */
 
 nav {
     position: relative;
@@ -94,15 +133,28 @@ nav {
     border-bottom: 1px solid var(--primary-color);
 }
 
+
+/* Limitamos el tamaño del logo para que no ocupe demasiado
+   espacio dentro de la barra de navegación. */
+
 .logo img {
     display: block;
+
     max-width: 100px;
     height: auto;
 }
 
+
+/* Este checkbox no lo mostramos.
+   Solamente lo usamos para controlar cuándo aparece o desaparece
+   el menú hamburguesa sin necesidad de JavaScript. */
+
 #menu-toggle {
     display: none;
 }
+
+
+/* Estas tres líneas forman el botón hamburguesa. */
 
 .menu-button {
     display: flex;
@@ -132,6 +184,10 @@ nav {
             opacity 0.3s ease;
 }
 
+
+/* En móvil dejamos el menú oculto inicialmente.
+   Cuando se activa el checkbox, lo mostraremos debajo del nav. */
+
 nav ul {
     position: absolute;
 
@@ -158,6 +214,9 @@ nav ul {
             0 15px 30px rgba(0, 0, 0, 0.55);
 }
 
+
+/* Le damos un poco más de peso a los enlaces de navegación. */
+
 nav ul li a {
     color: var(--text-color);
 
@@ -170,9 +229,16 @@ nav ul li a:hover {
     color: var(--primary-bright);
 }
 
+
+/* Si el checkbox está activado, mostramos el menú. */
+
 #menu-toggle:checked ~ ul {
     display: flex;
 }
+
+
+/* Cuando activamos el menú, transformamos las tres líneas
+   de la hamburguesa en una X. */
 
 #menu-toggle:checked ~ .menu-button span:nth-child(1) {
     transform: rotate(45deg) translate(7px, 7px);
@@ -186,11 +252,24 @@ nav ul li a:hover {
     transform: rotate(-45deg) translate(7px, -7px);
 }
 
+
+/* ==========================================================
+   6. HERO / CABECERA PRINCIPAL
+   ========================================================== */
+
+/* La cabecera usa una imagen grande como portada.
+   La ponemos como contenedor relativo para poder colocar
+   después el texto encima de la imagen. */
+
 .principal {
     position: relative;
 
     overflow: hidden;
 }
+
+
+/* Hacemos que la portada siempre ocupe todo el ancho disponible
+   y usamos object-fit para evitar deformarla. */
 
 .principal img {
     display: block;
@@ -200,6 +279,10 @@ nav ul li a:hover {
 
     object-fit: cover;
 }
+
+
+/* Agregamos una capa oscura encima de la imagen para que el texto
+   pueda leerse mejor sin importar qué parte del cover quede detrás. */
 
 .principal::after {
     content: "";
@@ -215,7 +298,12 @@ nav ul li a:hover {
             );
 }
 
-.marquee {
+
+/* Este contenedor coloca el texto en el centro del hero.
+   Le dejamos el nombre marquee porque originalmente queríamos
+   practicar ese efecto con CSS. */
+
+.hero-title {
     position: absolute;
     inset: 0;
 
@@ -228,7 +316,7 @@ nav ul li a:hover {
     text-align: center;
 }
 
-.marquee h1 {
+.hero-title h1 {
     margin: 0;
     padding: 0 20px;
 
@@ -239,6 +327,13 @@ nav ul li a:hover {
             0 0 10px rgba(193, 18, 31, 0.35);
 }
 
+
+/* ==========================================================
+   7. CONTENIDO PRINCIPAL
+   ========================================================== */
+
+/* Dejamos el main ocupando todo el ancho disponible. */
+
 main {
     width: 100%;
 
@@ -246,6 +341,15 @@ main {
 
     padding: 0 0 20px;
 }
+
+
+/* ==========================================================
+   8. SECCIÓN DE NOTICIAS
+   ========================================================== */
+
+/* Como estamos trabajando Mobile First, comenzamos mostrando
+   las noticias en una sola columna.
+   Más abajo, con una media query, las pasaremos a tres columnas. */
 
 #noticias {
     display: grid;
@@ -257,6 +361,10 @@ main {
     padding: 0 12px;
 }
 
+
+/* Hacemos que el título ocupe todo el ancho del Grid.
+   También usamos una línea roja para darle un detalle del tema. */
+
 #noticias h2 {
     grid-column: 1 / -1;
 
@@ -267,16 +375,23 @@ main {
     color: var(--text-color);
 }
 
+
+/* Cada noticia funciona como una tarjeta.
+   Dentro usamos Flexbox para acomodar la imagen y el contenido
+   uno debajo del otro. */
+
 #noticias article {
     overflow: hidden;
-    padding: 0;
-
-    background-color: var(--surface-color);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius);
 
     display: flex;
     flex-direction: column;
+
+    padding: 0;
+
+    background-color: var(--surface-color);
+
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
 
     transition:
             transform 0.3s ease,
@@ -284,11 +399,41 @@ main {
             box-shadow 0.3s ease;
 }
 
+
+/* Las imágenes ocupan todo el ancho de la tarjeta.
+   object-fit: cover permite mantener la proporción sin deformarlas. */
+
 #noticias article img {
     width: 100%;
     height: 210px;
+
     object-fit: cover;
     object-position: center;
+}
+
+
+/* Algunas imágenes necesitan un encuadre distinto porque originalmente
+   son más verticales, así que ajustamos su posición individualmente. */
+
+#noticias article img.img-taylor {
+    object-position: center top;
+}
+
+#noticias article img.img-reztos {
+    object-position: center top;
+}
+
+
+/* El contenido interno de cada tarjeta también usa Flexbox para
+   mantener una estructura sencilla y uniforme. */
+
+#noticias article .content {
+    display: flex;
+    flex-direction: column;
+
+    flex-grow: 1;
+
+    padding: 16px;
 }
 
 #noticias article h3 {
@@ -297,18 +442,13 @@ main {
     color: var(--accent-light);
 }
 
-#noticias article .content {
-    padding: 16px;
-
-    display: flex;
-    flex-direction: column;
-
-    flex-grow: 1;
-}
-
 #noticias article p {
     color: var(--text-color);
 }
+
+
+/* Al pasar el mouse levantamos un poco la tarjeta y agregamos
+   una sombra roja/morada para reforzar el estilo Gothic Tech. */
 
 #noticias article:hover {
     transform: translateY(-5px);
@@ -320,19 +460,18 @@ main {
             0 0 15px rgba(90, 24, 154, 0.15);
 }
 
-#noticias article img.img-taylor {
-    object-position: center top;
-}
 
-#noticias article img.img-reztos {
-    object-position: center top;
-}
+/* ==========================================================
+   9. BOTONES REUTILIZABLES
+   ========================================================== */
+
+/* El botón principal utiliza el rojo como color de acción.
+   Lo podemos reutilizar tanto en login como en registro. */
 
 .btn-primary {
     padding: 12px 18px;
 
     background-color: var(--primary-color);
-
     color: var(--text-color);
 
     border: 1px solid var(--primary-bright);
@@ -354,69 +493,54 @@ main {
             0 0 12px rgba(193, 18, 31, 0.45);
 }
 
-footer {
-    padding: 12px 16px;
 
-    color: var(--text-muted);
+/* El botón secundario es más discreto.
+   Lo usamos para acciones como Cancelar o Limpiar formulario. */
 
-    background-color: var(--bg-color);
+.btn-secondary {
+    width: 100%;
+
+    padding: 12px 18px;
+
+    background-color: transparent;
+    color: var(--text-color);
+
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    transition:
+            background-color 0.3s ease,
+            border-color 0.3s ease,
+            color 0.3s ease;
 }
 
-@media (min-width: 768px) {
+.btn-secondary:hover {
+    background-color: var(--surface-light);
 
-    .menu-button {
-        display: none;
-    }
+    border-color: var(--accent-light);
 
-    nav ul {
-        position: static;
-
-        width: auto;
-
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-
-        gap: 24px;
-
-        padding: 0;
-
-        background: none;
-
-        border-top: none;
-
-        box-shadow: none;
-    }
-
-    #noticias {
-        grid-template-columns: repeat(3, 1fr);
-
-        padding: 0;
-    }
-
-    .principal img {
-        height: 240px;
-    }
+    color: var(--accent-light);
 }
 
-@keyframes desplazamiento {
-
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(calc(100vw - 100%));
-    }
-}
-
-/**
-Ahora los estilos para iniciar-sesion
-*/
 
 /* ==========================================================
-   9. FORMULARIOS DE AUTENTICACIÓN
+   10. FORMULARIOS DE AUTENTICACIÓN
    ========================================================== */
+
+/* Login y registro comparten prácticamente la misma estructura.
+   Con estas clases evitamos repetir estilos para cada página. */
+
+
+/* Usamos Flexbox para centrar la tarjeta del formulario.
+   En móviles muy pequeños más abajo dejamos de centrarla
+   verticalmente para que el formulario largo sea más cómodo. */
 
 .auth-container {
     min-height: calc(100vh - 60px);
@@ -429,11 +553,7 @@ Ahora los estilos para iniciar-sesion
 }
 
 
-/* Tarjeta principal */
-
-.auth-form {
-    width: 100%;
-}
+/* Esta es la tarjeta que contiene el formulario. */
 
 .auth-card {
     width: 100%;
@@ -451,19 +571,16 @@ Ahora los estilos para iniciar-sesion
             0 0 20px rgba(90, 24, 154, 0.08);
 }
 
-@media (max-width: 480px) {
-    .auth-card {
-        padding: 24px 18px;
-    }
 
-    .auth-container {
-        align-items: flex-start;
-        padding: 18px 12px;
-    }
+/* Indicamos que el formulario utilice todo el ancho disponible
+   dentro de la tarjeta. */
+
+.auth-form {
+    width: 100%;
 }
 
 
-/* Logo */
+/* Centramos el logo sobre el formulario. */
 
 .auth-logo {
     display: flex;
@@ -478,7 +595,7 @@ Ahora los estilos para iniciar-sesion
 }
 
 
-/* Encabezado */
+/* Centramos el título y el pequeño texto explicativo. */
 
 .auth-header {
     margin-bottom: 28px;
@@ -500,8 +617,11 @@ Ahora los estilos para iniciar-sesion
 
 
 /* ==========================================================
-   CAMPOS DEL FORMULARIO
+   11. CAMPOS DE FORMULARIO
    ========================================================== */
+
+/* Cada campo queda dentro de un grupo para mantener el mismo
+   espacio entre label e input. */
 
 .form-group {
     margin-bottom: 20px;
@@ -519,7 +639,8 @@ Ahora los estilos para iniciar-sesion
 }
 
 
-/* Inputs principales */
+/* Aplicamos el mismo estilo a los diferentes controles del formulario
+   para que login y registro se vean consistentes. */
 
 input[type="text"],
 input[type="email"],
@@ -532,7 +653,6 @@ textarea {
     padding: 12px;
 
     background-color: var(--surface-light);
-
     color: var(--text-color);
 
     border: 1px solid var(--border-color);
@@ -546,7 +666,8 @@ textarea {
 }
 
 
-/* Placeholder */
+/* Dejamos el placeholder en un gris más suave para diferenciarlo
+   del texto que realmente escribe el usuario. */
 
 input::placeholder,
 textarea::placeholder {
@@ -554,7 +675,8 @@ textarea::placeholder {
 }
 
 
-/* Campo seleccionado */
+/* Cuando un campo tiene el foco, usamos morado para mostrar
+   claramente cuál está activo. */
 
 input:focus,
 select:focus,
@@ -568,7 +690,8 @@ textarea:focus {
 }
 
 
-/* Campos obligatorios */
+/* Los campos obligatorios reciben una línea roja a la izquierda.
+   Es solamente una ayuda visual, la validación la sigue haciendo HTML. */
 
 input:required {
     border-left: 4px solid var(--primary-color);
@@ -576,62 +699,131 @@ input:required {
 
 
 /* ==========================================================
-   BOTONES DEL FORMULARIO
+   12. ACCIONES DE LOS FORMULARIOS
    ========================================================== */
 
-.form-actions {
+/* Tanto login como registro acomodan sus botones en columna.
+   Agrupamos lo que comparten para no repetir código. */
+
+.form-actions,
+.register-actions {
     display: flex;
     flex-direction: column;
 
     gap: 12px;
+}
 
+
+/* En login dejamos un poco más de espacio antes de los botones. */
+
+.form-actions {
     margin-top: 25px;
 }
 
 
-/* Botón principal */
+/* En registro usamos un espacio ligeramente menor. */
 
-.form-actions .btn-primary {
-    width: 100%;
+.register-actions {
+    margin-top: 20px;
 }
 
 
-/* Botón secundario */
+/* El botón principal ocupa todo el ancho disponible. */
 
-.btn-secondary {
+.form-actions .btn-primary,
+.register-actions .btn-primary {
     width: 100%;
-    padding: 12px 18px;
-
-    background-color: transparent;
-    color: var(--text-color);
-
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius);
-
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 600;
-
-    text-align: center;
-    cursor: pointer;
-
-    transition:
-            background-color 0.3s ease,
-            border-color 0.3s ease,
-            color 0.3s ease;
-}
-
-.btn-secondary:hover {
-    background-color: var(--surface-light);
-
-    border-color: var(--accent-light);
-
-    color: var(--accent-light);
 }
 
 
 /* ==========================================================
-   REGISTRO
+   13. CONTROLES ESPECÍFICOS DEL REGISTRO
    ========================================================== */
+
+/* Los radio buttons se muestran en una fila cuando hay espacio,
+   pero flex-wrap permite que bajen de línea en pantallas pequeñas. */
+
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 14px;
+
+    margin-top: 8px;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    color: var(--text-color);
+
+    font-weight: 500;
+}
+
+
+/* accent-color nos permite cambiar el color del control nativo
+   sin tener que construir un radio button completamente nuevo. */
+
+.radio-group input[type="radio"] {
+    accent-color: var(--accent-light);
+
+    cursor: pointer;
+}
+
+
+/* El checkbox de términos utiliza la misma idea,
+   pero aquí elegimos el rojo como color principal. */
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin: 12px 0;
+}
+
+.checkbox-group input[type="checkbox"] {
+    accent-color: var(--primary-bright);
+
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    color: var(--text-color);
+}
+
+
+/* Dejamos un tamaño mínimo para comentarios, pero permitimos
+   que el usuario lo haga más alto si necesita escribir más. */
+
+textarea {
+    min-height: 110px;
+
+    resize: vertical;
+}
+
+
+/* Indicamos visualmente que el select se puede desplegar. */
+
+select {
+    cursor: pointer;
+}
+
+
+/* Le pedimos al navegador que muestre el selector de fecha
+   utilizando controles compatibles con nuestro fondo oscuro. */
+
+input[type="date"] {
+    color-scheme: dark;
+}
+
+
+/* Este texto aparece abajo de login o registro para poder
+   cambiar entre ambas páginas. */
 
 .auth-register {
     margin-top: 25px;
@@ -653,62 +845,95 @@ input:required {
     color: var(--primary-bright);
 }
 
-.radio-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
 
-    margin-top: 8px;
+/* ==========================================================
+   14. FOOTER
+   ========================================================== */
+
+/* Dejamos el footer sencillo para no competir visualmente
+   con el contenido principal. */
+
+footer {
+    padding: 12px 16px;
+
+    background-color: var(--bg-color);
+    color: var(--text-muted);
 }
 
-.radio-group label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
 
-    color: var(--text-color);
-    font-weight: 500;
+/* ==========================================================
+   15. MEDIA QUERIES
+   ========================================================== */
+
+/* Hasta aquí prácticamente todo corresponde a la versión móvil.
+   A partir de 768 px hacemos los cambios necesarios para
+   aprovechar mejor el espacio de tablet y escritorio. */
+
+@media (min-width: 768px) {
+
+    /* En pantallas grandes ya no necesitamos la hamburguesa. */
+
+    .menu-button {
+        display: none;
+    }
+
+
+    /* Convertimos el menú desplegable en una navegación horizontal. */
+
+    nav ul {
+        position: static;
+
+        width: auto;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        gap: 24px;
+
+        padding: 0;
+
+        background: none;
+
+        border-top: none;
+
+        box-shadow: none;
+    }
+
+
+    /* En lugar de una sola columna, mostramos las tres noticias
+       una al lado de la otra. */
+
+    #noticias {
+        grid-template-columns: repeat(3, 1fr);
+
+        padding: 0;
+    }
+
+
+    /* Aprovechamos el espacio extra para hacer un poco más alto
+       el cover principal. */
+
+    .principal img {
+        height: 240px;
+    }
 }
 
-.radio-group input[type="radio"] {
-    accent-color: var(--accent-light);
-    cursor: pointer;
-}
 
-.checkbox-group {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+/* En móviles pequeños el registro puede ser bastante largo.
+   En lugar de intentar centrar toda la tarjeta verticalmente,
+   hacemos que empiece desde arriba y dejamos que el usuario
+   recorra el formulario con scroll. */
 
-    margin: 12px 0;
-}
+@media (max-width: 480px) {
 
-.checkbox-group input[type="checkbox"] {
-    accent-color: var(--primary-bright);
-    cursor: pointer;
-}
+    .auth-container {
+        align-items: flex-start;
 
-.checkbox-group label {
-    color: var(--text-color);
-}
+        padding: 18px 12px;
+    }
 
-textarea {
-    min-height: 110px;
-    resize: vertical;
-}
-
-select {
-    cursor: pointer;
-}
-
-input[type="date"] {
-    color-scheme: dark;
-}
-
-.register-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-
-    margin-top: 20px;
+    .auth-card {
+        padding: 24px 18px;
+    }
 }

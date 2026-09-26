@@ -3,43 +3,75 @@
 
 <head>
     <meta charset="UTF-8">
+
+    <!-- Permite que la página se adapte correctamente
+         a celulares, tablets y pantallas de escritorio -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Nébula Music - Iniciar Sesión</title>
 
+    <!-- Usamos la misma hoja de estilos para mantener
+         la misma apariencia en todas las páginas -->
     <link rel="stylesheet" href="/styles/styles.css">
 </head>
 
 <body>
 
+<!-- =====================================================
+     CONTENEDOR PRINCIPAL DE AUTENTICACIÓN
+     ===================================================== -->
+
+<!-- auth-container utiliza Flexbox desde CSS para centrar
+     la tarjeta del formulario en la pantalla -->
 <main class="auth-container">
 
+    <!-- Esta tarjeta contiene todo el formulario de login -->
     <section class="auth-card">
 
+
+        <!-- Dejamos el logo como enlace para poder regresar
+             fácilmente a la página principal -->
         <a class="auth-logo" href="/index">
             <img src="/imgs/nebula-03.svg"
                  alt="Logo Nébula">
         </a>
 
+
+        <!-- Encabezado del formulario -->
         <header class="auth-header">
+
             <h1>Iniciar Sesión</h1>
 
             <p>
                 Ingresa tus credenciales para acceder
             </p>
+
         </header>
 
+
+        <!-- =================================================
+             FORMULARIO DE INICIO DE SESIÓN
+             ================================================= -->
+
+        <!-- Los datos se envían mediante POST al endpoint
+             /autentication que procesa el inicio de sesión.
+             Usamos x-www-form-urlencoded porque el backend
+             espera recibir los datos de esta manera. -->
         <form class="auth-form"
               method="post"
               action="/autentication"
               enctype="application/x-www-form-urlencoded">
 
+
+            <!-- Correo electrónico -->
             <div class="form-group">
 
                 <label for="email">
                     Correo electrónico
                 </label>
 
+                <!-- type="email" nos ayuda con la validación
+                     básica del formato desde el navegador -->
                 <input type="email"
                        id="email"
                        name="correo"
@@ -52,12 +84,16 @@
             </div>
 
 
+            <!-- Contraseña -->
             <div class="form-group">
 
                 <label for="password">
                     Contraseña
                 </label>
 
+                <!-- current-password ayuda al navegador y a
+                     gestores de contraseñas como KeePassXC a
+                     reconocer que se trata de una contraseña existente -->
                 <input type="password"
                        id="password"
                        name="password"
@@ -68,13 +104,17 @@
             </div>
 
 
+            <!-- Acciones del formulario -->
             <div class="form-actions">
 
+                <!-- Envía las credenciales al backend -->
                 <button type="submit"
                         class="btn-primary">
                     Iniciar sesión
                 </button>
 
+                <!-- Cancelar no envía el formulario;
+                     simplemente nos regresa al inicio -->
                 <a href="/index"
                    class="btn-secondary">
                     Cancelar
@@ -85,8 +125,11 @@
         </form>
 
 
+        <!-- Si el usuario todavía no tiene cuenta,
+             desde aquí puede ir directamente al registro -->
         <p class="auth-register">
             ¿Aún no tienes cuenta?
+
             <a href="/registro">
                 Regístrate aquí
             </a>
@@ -96,6 +139,10 @@
 
 </main>
 
+
+<!-- =====================================================
+     PIE DE PÁGINA
+     ===================================================== -->
 
 <footer>
     <p>Copyright Nébula 2025.</p>

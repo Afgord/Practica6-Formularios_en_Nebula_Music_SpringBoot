@@ -3,39 +3,75 @@
 
 <head>
     <meta charset="UTF-8">
+
+    <!-- Permite que la página se adapte correctamente
+         a celulares, tablets y pantallas de escritorio -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Nébula Music - Registro</title>
 
+    <!-- Compartimos la misma hoja de estilos para mantener
+         la misma apariencia entre index, login y registro -->
     <link rel="stylesheet" href="/styles/styles.css">
 </head>
 
 <body>
 
+<!-- =====================================================
+     CONTENEDOR PRINCIPAL DE REGISTRO
+     ===================================================== -->
+
+<!-- auth-container utiliza Flexbox desde CSS para acomodar
+     la tarjeta del formulario dentro de la pantalla -->
 <main class="auth-container">
 
+    <!-- Esta tarjeta contiene todo el formulario de registro -->
     <section class="auth-card">
 
+
+        <!-- El logo también funciona como enlace para regresar
+             rápidamente a la página principal -->
         <a class="auth-logo" href="/index">
             <img src="/imgs/nebula-03.svg"
                  alt="Logo Nébula">
         </a>
 
+
+        <!-- Encabezado del formulario -->
         <header class="auth-header">
+
             <h1>Crear Cuenta</h1>
-            <p>Completa tus datos para registrarte</p>
+
+            <p>
+                Completa tus datos para registrarte
+            </p>
+
         </header>
 
+
+        <!-- =================================================
+             FORMULARIO DE REGISTRO
+             ================================================= -->
+
+        <!-- Los datos se envían mediante POST al endpoint
+             /crear-cuenta.
+             El backend recibirá los campos usando los valores
+             indicados en cada atributo name. -->
         <form class="auth-form"
               method="post"
               action="/crear-cuenta"
               enctype="application/x-www-form-urlencoded">
 
+
+            <!-- Nombre completo -->
             <div class="form-group">
+
                 <label for="nombre">
                     Nombre completo
                 </label>
 
+                <!-- Pedimos mínimo 3 caracteres y limitamos
+                     el nombre a un máximo de 80 -->
                 <input type="text"
                        id="nombre"
                        name="nombre"
@@ -43,28 +79,38 @@
                        minlength="3"
                        maxlength="80"
                        required>
+
             </div>
 
 
+            <!-- Correo electrónico -->
             <div class="form-group">
+
                 <label for="correo">
                     Correo electrónico
                 </label>
 
+                <!-- type="email" permite que el navegador haga
+                     una validación básica del formato del correo -->
                 <input type="email"
                        id="correo"
                        name="correo"
                        placeholder="Ingresa tu correo electrónico"
                        maxlength="100"
                        required>
+
             </div>
 
 
+            <!-- Contraseña -->
             <div class="form-group">
+
                 <label for="password">
                     Contraseña
                 </label>
 
+                <!-- Pedimos al menos 8 caracteres antes de permitir
+                     el envío del formulario -->
                 <input type="password"
                        id="password"
                        name="password"
@@ -72,14 +118,22 @@
                        minlength="8"
                        autocomplete="off"
                        required>
+
             </div>
 
 
+            <!-- Pseudónimo -->
             <div class="form-group">
+
                 <label for="pseudonimo">
                     Pseudónimo
                 </label>
 
+                <!-- El pattern exige:
+                     - de 3 a 10 letras
+                     - un guion
+                     - de 2 a 10 números
+                     Ejemplo válido: Nebula-2025 -->
                 <input type="text"
                        id="pseudonimo"
                        name="pseudonimo"
@@ -87,8 +141,13 @@
                        pattern="[a-zA-Z]{3,10}-[0-9]{2,10}"
                        minlength="6"
                        required>
+
             </div>
 
+
+            <!-- =================================================
+                 GÉNERO
+                 ================================================= -->
 
             <div class="form-group">
 
@@ -96,32 +155,43 @@
                     Género
                 </label>
 
+                <!-- Todos los radio buttons comparten el mismo
+                     name para que solamente se pueda seleccionar
+                     una opción a la vez -->
                 <div class="radio-group">
 
                     <label for="rad_femenino">
+
                         <input type="radio"
                                id="rad_femenino"
                                name="genero"
                                value="femenino"
                                required>
+
                         Femenino
                     </label>
 
+
                     <label for="rad_masculino">
+
                         <input type="radio"
                                id="rad_masculino"
                                name="genero"
                                value="masculino"
                                required>
+
                         Masculino
                     </label>
 
+
                     <label for="rad_otro">
+
                         <input type="radio"
                                id="rad_otro"
                                name="genero"
                                value="otro"
                                required>
+
                         Otro
                     </label>
 
@@ -130,15 +200,24 @@
             </div>
 
 
+            <!-- =================================================
+                 TIPO DE SUSCRIPCIÓN
+                 ================================================= -->
+
             <div class="form-group">
+
                 <label for="suscripcion">
                     Tipo de suscripción
                 </label>
 
+                <!-- El select permite escoger una opción de una
+                     lista sin necesidad de varios inputs -->
                 <select id="suscripcion"
                         name="suscripcion"
                         required>
 
+                    <!-- Dejamos value vacío para obligar al usuario
+                         a seleccionar una opción real -->
                     <option value="">
                         ----Selecciona una opción----
                     </option>
@@ -156,21 +235,33 @@
                     </option>
 
                 </select>
+
             </div>
 
 
+            <!-- Fecha de nacimiento -->
             <div class="form-group">
+
                 <label for="fecha_nacimiento">
                     Fecha de nacimiento
                 </label>
 
+                <!-- type="date" permite utilizar el selector de
+                     fecha que proporciona el navegador -->
                 <input type="date"
                        id="fecha_nacimiento"
                        name="fechaNacimiento"
                        required>
+
             </div>
 
 
+            <!-- =================================================
+                 TÉRMINOS Y CONDICIONES
+                 ================================================= -->
+
+            <!-- Usamos un checkbox porque el usuario solamente
+                 necesita indicar si acepta o no los términos -->
             <div class="checkbox-group">
 
                 <input type="checkbox"
@@ -186,25 +277,38 @@
             </div>
 
 
+            <!-- Comentarios adicionales -->
             <div class="form-group">
+
                 <label for="comentarios">
                     Comentarios o gustos
                 </label>
 
+                <!-- textarea permite escribir información más larga.
+                     Este campo no es obligatorio. -->
                 <textarea id="comentarios"
                           name="comentarios"
                           rows="4"
                           placeholder="Cuéntanos qué música te gusta"></textarea>
+
             </div>
 
 
+            <!-- =================================================
+                 ACCIONES DEL FORMULARIO
+                 ================================================= -->
+
             <div class="register-actions">
 
+                <!-- Envía todos los datos al backend -->
                 <button type="submit"
                         class="btn-primary">
                     Crear cuenta
                 </button>
 
+
+                <!-- type="reset" regresa los campos del formulario
+                     a su estado inicial sin enviarlos -->
                 <button type="reset"
                         class="btn-secondary">
                     Limpiar formulario
@@ -213,8 +317,11 @@
             </div>
 
 
+            <!-- Si el usuario ya tiene una cuenta puede ir
+                 directamente al formulario de inicio de sesión -->
             <p class="auth-register">
                 ¿Ya tienes una cuenta?
+
                 <a href="/iniciar-sesion">
                     Iniciar sesión
                 </a>
@@ -226,6 +333,10 @@
 
 </main>
 
+
+<!-- =====================================================
+     PIE DE PÁGINA
+     ===================================================== -->
 
 <footer>
     <p>Copyright Nébula 2025.</p>

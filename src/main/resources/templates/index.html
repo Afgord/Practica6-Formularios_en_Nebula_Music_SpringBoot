@@ -1,91 +1,196 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
+
+    <!-- Esto permite que la página se adapte correctamente
+         al ancho de celulares, tablets y otras pantallas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Nébula Music - Inicio (Código Base)</title>
+
+    <!-- Cargamos la hoja de estilos que compartimos
+         con las demás páginas de Nébula Music -->
     <link rel="stylesheet" href="/styles/styles.css">
 </head>
+
 <body>
 
-    <!-- MENÚ DE NAVEGACIÓN -->
-    <nav>
-        <a class="logo" href="index.html">
-            <img src="/imgs/nebula-03.svg" alt="Logo Nébula" width="100">
-        </a>
+<!-- =====================================================
+     MENÚ DE NAVEGACIÓN
+     ===================================================== -->
 
-        <input type="checkbox" id="menu-toggle">
-        <label for="menu-toggle" class="menu-button">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
+<!-- Aquí usamos Flexbox desde CSS para acomodar el logo
+     y las opciones de navegación.
+     En móvil este mismo menú cambia a modo hamburguesa. -->
+<nav>
 
-        <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="iniciar-sesion.html">Iniciar Sesión</a></li>
-            <li><a href="registro.html">Registrarse</a></li>
-        </ul>
-    </nav>
+    <!-- El logo también funciona como enlace para volver al inicio -->
+    <a class="logo" href="index.html">
+        <img src="/imgs/nebula-03.svg"
+             alt="Logo Nébula"
+             width="100">
+    </a>
 
-    <!-- CABECERA -->
-    <header class="principal">
-        <img src="/imgs/cover.jpg" alt="Cover Nébula" width="100%" height="200" style="object-fit: cover;">
-        <div class="marquee">
-            <h1>Tu música en la nube y en tu espacio.</h1>
-        </div>
-    </header>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main>
-        
-        <!-- SECCIÓN DE NOTICIAS -->
-        <section id="noticias">
-            <h2>Novedades de la Semana</h2>
+    <!-- Este checkbox queda oculto con CSS.
+         Lo utilizamos para controlar el menú hamburguesa
+         sin necesidad de usar JavaScript. -->
+    <input type="checkbox" id="menu-toggle">
 
-            <!-- Artículo 1 -->
-            <article>
-                <img class="img-taylor" src="/imgs/taylor.jpg" alt="Taylor Swift">
-                <div class="content">
-                    <h3>Taylor Swift en su nueva era</h3>
-                    <p>El nuevo disco de Taylor, <i>"The life of a showgirl"</i> saldrá a la venta el 3 de octubre.</p>
-                </div>
 
-            </article>
+    <!-- Estas tres líneas forman visualmente el botón hamburguesa -->
+    <label for="menu-toggle" class="menu-button">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
 
-            <!-- Artículo 2 -->
-            <article>
-                <img class="img-oasis" src="/imgs/oasis.jpg" alt="Oasis en concierto">
 
-                <div class="content">
-                    <h3>Oasis</h3>
-                    <p>
-                        Los hermanos Liam y Noel Gallagher se reencontrarán
-                        con sus fans y traerán un setlist espectacular.
-                    </p>
-                </div>
-            </article>
+    <!-- Enlaces principales del sitio -->
+    <ul>
+        <li>
+            <a href="index.html">Inicio</a>
+        </li>
 
-            <!-- Artículo 3 -->
-            <article>
-                <img class="img-reztos" src="/imgs/reztos.png" alt="Tributo a Marea">
+        <li>
+            <a href="iniciar-sesion.html">Iniciar Sesión</a>
+        </li>
 
-                <div class="content">
-                    <h3>Los Reztos en concierto</h3>
-                    <p>
-                        Gran éxito en el concierto tributo a Marea en Ciudad Obregón.
-                    </p>
-                </div>
-            </article>
+        <li>
+            <a href="registro.html">Registrarse</a>
+        </li>
+    </ul>
 
-        </section>
+</nav>
 
-    </main>
 
-    <!-- PIE DE PÁGINA -->
-    <footer>
-        <p>Copyright Nébula 2025.</p>
-    </footer>
+<!-- =====================================================
+     CABECERA / HERO
+     ===================================================== -->
+
+<!-- Usamos una imagen grande como portada y colocamos
+     el título encima utilizando CSS. -->
+<header class="principal">
+
+    <img src="/imgs/cover.jpg"
+         alt="Cover Nébula"
+         width="100%"
+         height="200"
+         style="object-fit: cover;">
+
+    <!-- Colocamos el título sobre la imagen principal y lo centramos
+     con Flexbox desde CSS -->
+    <div class="hero-title">
+        <h1>Tu música en la nube y en tu espacio.</h1>
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     CONTENIDO PRINCIPAL
+     ===================================================== -->
+
+<main>
+
+
+    <!-- =================================================
+         SECCIÓN DE NOTICIAS
+         ================================================= -->
+
+    <!-- Esta sección utiliza CSS Grid.
+         Por Mobile First comenzamos con una sola columna
+         y en pantallas grandes pasamos a tres. -->
+    <section id="noticias">
+
+        <h2>Novedades de la Semana</h2>
+
+
+        <!-- Artículo 1: Taylor Swift -->
+        <article>
+
+            <!-- La clase img-taylor nos permite ajustar
+                 específicamente el encuadre de esta fotografía -->
+            <img class="img-taylor"
+                 src="/imgs/taylor.jpg"
+                 alt="Taylor Swift">
+
+            <div class="content">
+
+                <h3>Taylor Swift en su nueva era</h3>
+
+                <p>
+                    El nuevo disco de Taylor,
+                    <i>"The life of a showgirl"</i>
+                    saldrá a la venta el 3 de octubre.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <!-- Artículo 2: Oasis -->
+        <article>
+
+            <img class="img-oasis"
+                 src="/imgs/oasis.jpg"
+                 alt="Oasis en concierto">
+
+            <div class="content">
+
+                <h3>Oasis</h3>
+
+                <p>
+                    Los hermanos Liam y Noel Gallagher se reencontrarán
+                    con sus fans y traerán un setlist espectacular.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <!-- Artículo 3: Los Reztos -->
+        <article>
+
+            <!-- Esta imagen también necesita un encuadre propio
+                 porque originalmente tiene una orientación vertical -->
+            <img class="img-reztos"
+                 src="/imgs/reztos.png"
+                 alt="Tributo a Marea">
+
+            <div class="content">
+
+                <h3>Los Reztos en concierto</h3>
+
+                <p>
+                    Gran éxito en el concierto tributo a Marea
+                    en Ciudad Obregón.
+                </p>
+
+            </div>
+
+        </article>
+
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     PIE DE PÁGINA
+     ===================================================== -->
+
+<!-- Dejamos el footer sencillo porque el contenido principal
+     de la práctica está en la navegación, las tarjetas
+     y los formularios. -->
+<footer>
+    <p>Copyright Nébula 2025.</p>
+</footer>
 
 </body>
+
 </html>
